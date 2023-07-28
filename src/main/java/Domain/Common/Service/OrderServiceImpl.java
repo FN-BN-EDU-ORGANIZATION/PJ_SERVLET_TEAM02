@@ -1,8 +1,9 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.MemberDaoimpl;
@@ -13,7 +14,6 @@ import Domain.Common.Dao.ProdDaoimpl;
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
-import Domain.Common.Service.Auth.Session;
 
 public class OrderServiceImpl implements OrderService {
 	
@@ -125,7 +125,7 @@ public class OrderServiceImpl implements OrderService {
 		// 주문 전체확인
 	public List<OrderDto> getOrder() throws Exception
 	{
-		System.out.println("서비스 호출");
+		
 		return oDao.select();
 		
 	}
@@ -160,19 +160,35 @@ public class OrderServiceImpl implements OrderService {
 	
 	// 주문 완료 및 취소 처리
 	@Override
-	public boolean removeOrder(String sid,String order_id)
+	public boolean removeOrder(HttpServletRequest req)
 	{
 		System.out.println("OrderService's removeOrder()");
-		String role = sid;
-		if(role.equals("Role_Member"))
-		{
-		int result = oDao.delete(order_id);
-		if(result > 0)
-			return true;
-		System.out.println("role : " + role);
-		}
-		return false;
+		String order_id = (String) req.getAttribute("order_id");
+		System.out.println("전달받은 order_id : " +  order_id);
+	 
+		if (order_id == null || order_id.isEmpty()) {
+	        System.out.println("[오류] 데이터 유효성 검사 오류");
+	        req.setAttribute("msg", "[오류] 삭제할 수 없는 정보입니다.");
+	        return false;
+	    }
+	    
+	    try {
+	        int result = oDao.delete(order_id);
+	        if (result > 0) {
+	            return true;
+	        } else {
+	            // 주문 정보 삭제에 실패한 경우에 대한 로그를 남기고 예외 메시지를 출력
+	            System.out.println("Failed to delete order from removeOrder: " + order_id);
+	            throw new Exception("주문 정보 삭제에 실패했습니다.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return false;
 	}
+
+
 
 	
 
