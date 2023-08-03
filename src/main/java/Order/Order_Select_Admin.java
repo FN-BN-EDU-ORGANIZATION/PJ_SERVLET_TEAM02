@@ -36,7 +36,7 @@ public class Order_Select_Admin implements SubController {
 		      ObjectMapper objectMapper = new ObjectMapper();
 		      String jsonConverted = objectMapper.writeValueAsString(order);
 		      System.out.println("jsonConverted: " + jsonConverted);
-		      resp.setCharacterEncoding("UTF-8");
+				/* resp.setCharacterEncoding("UTF-8"); */
 		      resp.setContentType("application/json");
 		      PrintWriter out = resp.getWriter();
 		      out.print(jsonConverted);
@@ -46,7 +46,7 @@ public class Order_Select_Admin implements SubController {
 		      ObjectMapper objectMapper = new ObjectMapper();
 		      String jsonConverted = objectMapper.writeValueAsString(orderList);
 		      System.out.println("jsonConverted: " + jsonConverted);
-		      resp.setCharacterEncoding("UTF-8");
+				/* resp.setCharacterEncoding("UTF-8"); */
 		      resp.setContentType("application/json");
 		      PrintWriter out = resp.getWriter();
 		      out.print(jsonConverted);

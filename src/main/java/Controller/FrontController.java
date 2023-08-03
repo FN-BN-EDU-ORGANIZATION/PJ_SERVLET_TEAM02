@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Member.Member_Delete;
+import Member.Member_Insert;
 import Member.Member_Select_Admin;
 import Member.Member_Select_User;
 import Member.Member_Update_Admin;
@@ -44,21 +45,22 @@ public class FrontController extends HttpServlet{
 		// order
 		map.put(projectPath+"/order/search.do", new Order_Select_Admin() );		// 완료
 		map.put(projectPath+"/order/search2.do", new Order_Select_User() );		// 완료
-		map.put(projectPath+"/order/delete.do", new Order_Delete_Admin() );
+		map.put(projectPath+"/order/delete.do", new Order_Delete_Admin() );		// 완료
 		map.put(projectPath+"/order/insert.do", new Order_Insert_User() );
-		map.put(projectPath+"/order/update.do", new Order_Update_User() );
+		map.put(projectPath+"/order/update.do", new Order_Update_User() );			
 		map.put(projectPath+"/order/updateadmin.do", new Order_Update_Admin() );	// 완료
 		
 		// member
 		map.put(projectPath+"/Member/search.do", new Member_Select_Admin() );
 		map.put(projectPath+"/Member/search1.do", new Member_Select_User() );
+		map.put(projectPath+"/Member/register.do", new Member_Insert() );			// 완료
 		map.put(projectPath+"/Member/update.do", new Member_Update_Admin() );		
 		map.put(projectPath+"/Member/update.do", new Member_Update_User() );
 		map.put(projectPath+"/Member/delete.do", new Member_Delete() );
 		
 		// auth
 		map.put(projectPath+"/login.do", new LoginController() );					// 완료
-		map.put(projectPath+"/logout.do", new LogoutController() );					
+		map.put(projectPath+"/logout.do", new LogoutController() );					// 완료	
 		
 		// product
 		map.put(projectPath+"/Product/search.do", new Prod_Select_Admin() );

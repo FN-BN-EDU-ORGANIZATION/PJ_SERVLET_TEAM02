@@ -84,7 +84,7 @@ let role = '<%= session.getAttribute("ROLE") %>';
 	</header>
 	<!-- 로그인 폼 -->
    <div class="Main">
-  <form action="/TeamProject2/register" method="post" id="register-form">
+  <form action="${pageContext.request.contextPath}/Member/register.do" method="post">
     <h1>회원가입</h1>
     <label for="name"><input type="text" id="name" name="name" placeholder="이름"></label>
     <label for="adr_addr"><input type="text" id="addr" name="adr_addr" placeholder="주소"></label>
@@ -101,13 +101,15 @@ let role = '<%= session.getAttribute("ROLE") %>';
 	<hr style="margin-left: 10px; margin-right: 10px;">
 
   <Footer>
-    <div class="Footer">
-      <p><a href="">공지사항</a> | <a href="">이용약관</a> | <a href="">개인정보취급 방침</a></p>
-      <p>&copy;상호명 (주) Daily Friday 대표 : 9조</p>
-      <p>사업자 등록 번호 : 916-14-56874 | 대구 중구 덕산동 00빌딩</p>
-      <p>대표 전화 번호 : 010-4568-5468</p>
-      <p>email : dfteam9@naver.com</p>
-    </div>
+		<div class="Footer">
+			<p>
+				<a href="">공지사항</a> | <a href="">이용약관</a> | <a href="">개인정보취급 방침</a>
+			</p>
+			<p>&copy;상호명 (주) Daily Friday 대표 : 2조</p>
+			<p>사업자 등록 번호 : 916-14-56874 | 대구 중구 덕산동 00빌딩</p>
+			<p>대표 전화 번호 : 010-4568-5468</p>
+			<p>email : dfteam2@naver.com</p>
+		</div>
   </Footer>
 
 </body>
